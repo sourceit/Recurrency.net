@@ -1,7 +1,7 @@
 WHAT IS RECURRENCY.NET
 Recurrency.net is a recurring date library for .net.
 
-E.g.  You can create calcualte
+E.g.  You cna use r.n to calcuate the 1st Wednesday in every month till 2020.
 
 TEXT REPRESENTATION OF RECURRENCY
 
