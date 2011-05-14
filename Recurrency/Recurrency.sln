@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurrency", "Recurrency.csproj", "{311AFCF5-3241-4502-9E62-81B86717996B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecurrencyTests", "..\RecurrencyTests\RecurrencyTests.csproj", "{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{311AFCF5-3241-4502-9E62-81B86717996B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{311AFCF5-3241-4502-9E62-81B86717996B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{311AFCF5-3241-4502-9E62-81B86717996B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{311AFCF5-3241-4502-9E62-81B86717996B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
