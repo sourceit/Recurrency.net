@@ -27,10 +27,12 @@ X           Every x days
 000001		1 day apart
  will calculate the 12 days of xmas for 2011
 
-D2011020120110228000000W
+D2011020120110228000000W000000
 D
 20110201	Feb 1st 2011
 20110228	Feb 28th 2011
 000000		No specifed num occurences
 W			Weekdays
-will calculate 
+000000		Not used
+
+will calculate every weekday in Feb 2011.
