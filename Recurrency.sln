@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurrency", "Recurrency.csproj", "{311AFCF5-3241-4502-9E62-81B86717996B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurrency", "Recurrency\Recurrency.csproj", "{311AFCF5-3241-4502-9E62-81B86717996B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecurrencyTests", "..\RecurrencyTests\RecurrencyTests.csproj", "{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecurrencyTests", "RecurrencyTests\RecurrencyTests.csproj", "{435B53ED-FBB0-46CB-AA18-9C6AF2870CF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

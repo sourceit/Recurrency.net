@@ -22,29 +22,37 @@ namespace Recurrency
         protected const int _OffsetStartDate = 1;
         protected const int _OffsetEndDate = _OffsetStartDate + _DateLength;
         protected const int _OffsetOccurrences = _OffsetEndDate + _DateLength;
-        protected const int _OffsetTypeSpecific = _OffsetOccurrences + _IntLength;
+        protected const int _OffsetInterval = _OffsetOccurrences + _IntLength;
+        protected const int _OffsetTypeSpecific = _OffsetInterval + _IntLength;
 
         protected const string _IntFormat = "000000";
 
         public BaseRecurrency(string pattern)
         {
-            _StartDate = GetDateFromPattern(pattern, _OffsetStartDate).Value;
-            _EndDate = GetDateFromPattern(pattern, _OffsetEndDate);
-            _Occurrences = GetIntFromPattern(pattern, _OffsetOccurrences);
+            _InitialPattern = pattern.Replace(" ", "").ToUpper();
+
+            _StartDate = GetDateFromPattern(_InitialPattern, _OffsetStartDate).Value;
+            _EndDate = GetDateFromPattern(_InitialPattern, _OffsetEndDate);
+            _Occurrences = GetIntFromPattern(_InitialPattern, _OffsetOccurrences);
+            _Interval = GetIntFromPattern(_InitialPattern, _OffsetInterval);
         }
 
-        public BaseRecurrency(DateTime startDate, DateTime endDate)
+        protected string _InitialPattern;
+
+        public BaseRecurrency(DateTime startDate, DateTime endDate, int interval = 1)
         {
             _StartDate = startDate;
             _EndDate = endDate;
             _Occurrences = 0;
+            _Interval = interval;
         }
 
-        public BaseRecurrency(DateTime startDate, int numOccurrences = _Default_Occurrences)
+        public BaseRecurrency(DateTime startDate, int numOccurrences = _Default_Occurrences, int interval = 1)
         {
             _StartDate = startDate;
             _EndDate = null;
             _Occurrences = numOccurrences;
+            _Interval = interval;
         }
 
         private DateTime _StartDate;
@@ -62,6 +70,16 @@ namespace Recurrency
             get
             {
                 return _EndDate;
+            }
+        }
+
+        private int _Interval;
+        public int Interval
+        {
+            get { return _Interval; }
+            set
+            {
+                _Interval = value;
             }
         }
 
@@ -134,7 +152,7 @@ namespace Recurrency
 
         public string GetInitialPattern()
         {
-            return string.Format("{0}{1}{2}", DateToPatternFormat(_StartDate), DateToPatternFormat(_EndDate), _Occurrences.ToString(_IntFormat));
+            return string.Format("{0}{1}{2}{3}", DateToPatternFormat(_StartDate), DateToPatternFormat(_EndDate), _Occurrences.ToString(_IntFormat), _Interval.ToString(_IntFormat));
         }
     }
 }

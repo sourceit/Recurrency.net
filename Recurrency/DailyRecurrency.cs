@@ -9,53 +9,40 @@ namespace Recurrency
 
     public class DailyRecurrency : BaseRecurrency
     {
-        protected const int _OffsetDaysApart = _OffsetTypeSpecific + 1;
-
         public DailyRecurrency(string pattern)
             : base(pattern)
         {
-            if (pattern[_OffsetTypeSpecific] == 'W')
+            if (_InitialPattern[_OffsetTypeSpecific] == 'W')
             {
                 Type = DailyType.Weekdays;
-                DaysApart = 0;
+                Interval = 1;
             }
             else
             {
                 Type = DailyType.EveryXDays;
-                DaysApart = GetIntFromPattern(pattern, _OffsetDaysApart);
             }
         }
 
-        public DailyRecurrency(DateTime startDate, DateTime endDate, DailyType type = DailyType.EveryXDays, int daysApart = 1)
+        public DailyRecurrency(DateTime startDate, DateTime endDate, DailyType type = DailyType.EveryXDays, int interval = 1)
             : base(startDate, endDate)
         {
-            SetTypeAndDaysApart(type, daysApart);
+            SetTypeAndInterval(type, interval);
         }
 
-        public DailyRecurrency(DateTime startDate, int numOccurrences = _Default_Occurrences, DailyType type = DailyType.EveryXDays, int daysApart = 1)
+        public DailyRecurrency(DateTime startDate, int numOccurrences = _Default_Occurrences, DailyType type = DailyType.EveryXDays, int interval = 1)
             : base(startDate, numOccurrences)
         {
-            SetTypeAndDaysApart(type, daysApart);
+            SetTypeAndInterval(type, interval);
         }
 
-        private void SetTypeAndDaysApart(DailyType type, int daysApart)
+        private void SetTypeAndInterval(DailyType type, int interval)
         {
             Type = type;
-            DaysApart = type == DailyType.EveryXDays ? daysApart : 1;
+            Interval = type == DailyType.EveryXDays ? interval : 1;  // currently only support intervals of 1 for weekdays
         }
 
         
         public DailyType Type { get; set; }
-
-        private int _DaysApart;
-        public int DaysApart
-        {
-            get { return _DaysApart; }
-            set
-            {
-                _DaysApart = value;
-            }
-        }
 
         //                               s  m  t  w  t  f  s
         private int[] _FirstDayOffset = {1, 0, 0, 0, 0, 0, 2 };
@@ -65,7 +52,7 @@ namespace Recurrency
         {
             switch (Type)
             {
-                case DailyType.EveryXDays: return knownGood.AddDays(_DaysApart);
+                case DailyType.EveryXDays: return knownGood.AddDays(Interval);
                 case DailyType.Weekdays: return knownGood.AddDays(_NextDayOffset[(int)knownGood.DayOfWeek]);
                 default: throw new Exception("Unknown daily type");
             }
@@ -83,12 +70,7 @@ namespace Recurrency
 
         public override string GetPattern()
         {
-            if (Type == DailyType.Weekdays)
-            {
-                return string.Format("D{0}W", GetInitialPattern());
-            }
-            return string.Format("D{0}X{1}", GetInitialPattern(), DaysApart.ToString(_IntFormat));
-
+            return string.Format("D{0}{1}", GetInitialPattern(), Type == DailyType.Weekdays ? 'W' : 'X');
         }
     }
 }

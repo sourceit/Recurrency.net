@@ -79,7 +79,7 @@ namespace RecurrencyTests
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 4, 1), 5, DailyType.EveryXDays, 10);
             Assert.AreEqual(DailyType.EveryXDays, daily.Type);
-            Assert.AreEqual(10, daily.DaysApart);
+            Assert.AreEqual(10, daily.Interval);
         }
 
         [Test]
@@ -115,18 +115,18 @@ namespace RecurrencyTests
         [Test]
         public void Create_FromPattern_X()
         {
-            DailyRecurrency daily = new DailyRecurrency("D2011051200000000000156X000050");
+            DailyRecurrency daily = new DailyRecurrency("D2011051200000000000156000050X");
             Assert.AreEqual(new DateTime(2011, 5, 12), daily.StartDate);
             Assert.IsNull(daily.EndDate);
             Assert.AreEqual(156, daily.Occurrences);
             Assert.AreEqual(DailyType.EveryXDays, daily.Type);
-            Assert.AreEqual(50, daily.DaysApart);
+            Assert.AreEqual(50, daily.Interval);
         }
 
         [Test]
         public void Create_FromPattern_Weekly()
         {
-            DailyRecurrency daily = new DailyRecurrency("D2011051200000000000156W000000");
+            DailyRecurrency daily = new DailyRecurrency("D 20110512 00000000 000156 000001 W");
             Assert.AreEqual(new DateTime(2011, 5, 12), daily.StartDate);
             Assert.IsNull(daily.EndDate);
             Assert.AreEqual(156, daily.Occurrences);
@@ -137,14 +137,14 @@ namespace RecurrencyTests
         public void GetPattern_X()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 05, 22), DailyType.EveryXDays, 156);
-            Assert.AreEqual("D2011051220110522000000X000156", daily.GetPattern());
+            Assert.AreEqual("D2011051220110522000000000156X", daily.GetPattern());
         }
 
         [Test]
         public void GetPattern_Weekly()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays);
-            Assert.AreEqual("D2011051200000000000010W", daily.GetPattern());
+            Assert.AreEqual("D2011051200000000000010000001W", daily.GetPattern());
         }
     }
 }
