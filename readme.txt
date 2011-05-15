@@ -44,7 +44,6 @@ D			Daily
 000001		Not used, always treated as one for weekdays (for now)
 W			Weekdays
 
-
 will calculate every weekday in Feb 2011.
 
 WEEKLY SPECIFIC PATTERN
@@ -56,6 +55,9 @@ Use Thursday		Y/N
 Use Friday			Y/N
 Use Saturday		Y/N
 Use Sunday			Y/N
+
+Note: Weeks start on mondays so that weekends stay together
+
 E.g.
 
 W 20110201 20110228 000000 000001 YNYNYNN
@@ -65,3 +67,5 @@ W			Weekly
 000000		No specifed num occurences
 000001		Every week
 YNYNYNN		Mon, Wed, Fri
+
+

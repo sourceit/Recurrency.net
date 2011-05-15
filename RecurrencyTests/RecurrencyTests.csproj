@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BaseRecurrencyTests.cs" />
     <Compile Include="DailyTests.cs" />
+    <Compile Include="DateUtilsTests.cs" />
     <Compile Include="RecurrencyUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeeklyTests.cs" />

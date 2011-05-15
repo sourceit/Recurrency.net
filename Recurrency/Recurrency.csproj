@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRecurrency.cs" />
+    <Compile Include="DateUtils.cs" />
     <Compile Include="WeeklyRecurrency.cs" />
     <Compile Include="DailyRecurrency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

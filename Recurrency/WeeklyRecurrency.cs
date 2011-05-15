@@ -130,6 +130,36 @@ namespace Recurrency
             }
         }
 
-        
+        private DateTime GetFirstDateFromInclusive(DateTime from)
+        {
+            DateTime result = from;
+            for (int i = 0; i < 7; i++)
+            {
+                if (_Days[result.DayOfWeek_Mondayised()]) { return result; }
+                result = result.AddDays(1);
+            }
+            throw new Exception("No days selected for weekly recurrency");        
+        }
+
+        public override DateTime GetFirstDate()
+        {
+            return GetFirstDateFromInclusive(StartDate);
+        }
+
+        protected override DateTime? _GetNextFromExact(DateTime knownGood)
+        {
+            int nextDay = knownGood.DayOfWeek_Mondayised() + 1;
+            for (int i = nextDay; i < 7; i++)
+            {
+                if (_Days[i]) 
+                { 
+                    return knownGood.FirstDayOfWeek_Mondayised().AddDays(i); 
+                }
+            }
+
+            // not in first week
+            DateTime nextWeek = knownGood.FirstDayOfWeek_Mondayised().AddDays(7 * Interval);
+            return GetFirstDateFromInclusive(nextWeek);
+        }
     }
 }

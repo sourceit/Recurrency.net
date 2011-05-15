@@ -85,7 +85,6 @@ namespace RecurrencyTests
             Assert.AreEqual(new DateTime(2011, 4, 4), weekly.GetNextDate(new DateTime(2011, 4, 3)));
             Assert.AreEqual(new DateTime(2011, 4, 5), weekly.GetNextDate(new DateTime(2011, 4, 4)));
             Assert.IsNull(weekly.GetNextDate(new DateTime(2011, 4, 5)));
-            Assert.Fail("not implimented");
         }
 
 
@@ -132,7 +131,7 @@ namespace RecurrencyTests
             // 25 26 27 28 29 30    << 30
 
             Assert.AreEqual(new DateTime(2011, 4, 1), weekly.StartDate);
-            Assert.AreEqual(new DateTime(2011, 4, 02), weekly.GetFirstDate());
+            Assert.AreEqual(new DateTime(2011, 4, 02), weekly.GetFirstDate());  // d1
             Assert.AreEqual(new DateTime(2011, 4, 02), weekly.GetNextDate(new DateTime(2011, 4, 1)));  // Fri -> Sat d1
             Assert.AreEqual(new DateTime(2011, 4, 03), weekly.GetNextDate(new DateTime(2011, 4, 2)));  // Sat -> Sun d2 
             Assert.AreEqual(new DateTime(2011, 4, 16), weekly.GetNextDate(new DateTime(2011, 4, 3)));  // Sun -> Sat 2 weeks ahead d3
@@ -142,6 +141,32 @@ namespace RecurrencyTests
 
             Assert.AreEqual(new DateTime(2011, 4, 30), weekly.GetNextDate(new DateTime(2011, 4, 22)));
             Assert.IsNull(weekly.GetNextDate(new DateTime(2011, 4, 30)));
+        }
+
+        [Test]
+        public void GetNext_Every2ndSunday()
+        {
+            WeeklyRecurrency weekly = new WeeklyRecurrency(new DateTime(2011, 4, 3), new DateTime(2011,5,1), 2, sunday: true);
+
+            // April 2011          
+            // M  T  W  T  F  S  S  
+            //             1  2  3  << 3
+            // 4  5  6  7  8  9  10 
+            // 11 12 13 14 15 16 17 << 17
+            // 18 19 20 21 22 23 24 
+            // 25 26 27 28 29 30    << 1
+
+            Assert.AreEqual(new DateTime(2011, 4, 3), weekly.StartDate);    
+            Assert.AreEqual(new DateTime(2011, 4, 3), weekly.GetFirstDate());   // d1
+            Assert.AreEqual(new DateTime(2011, 4, 17), weekly.GetNextDate(new DateTime(2011, 4, 4)));  // d2
+            Assert.AreEqual(new DateTime(2011, 4, 17), weekly.GetNextDate(new DateTime(2011, 4, 10))); 
+            Assert.AreEqual(new DateTime(2011, 4, 17), weekly.GetNextDate(new DateTime(2011, 4, 16))); 
+            Assert.AreEqual(new DateTime(2011, 5, 01), weekly.GetNextDate(new DateTime(2011, 4, 17))); // d3
+            Assert.AreEqual(new DateTime(2011, 5, 01), weekly.GetNextDate(new DateTime(2011, 4, 18)));
+            Assert.AreEqual(new DateTime(2011, 5, 01), weekly.GetNextDate(new DateTime(2011, 4, 30))); 
+
+            Assert.IsNull(weekly.GetNextDate(new DateTime(2011, 5, 1)));
+
         }
     }
 }
