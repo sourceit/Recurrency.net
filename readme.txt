@@ -93,7 +93,39 @@ M			Monthly
 00000000	No specifed num occurences
 0006		6 occurences
 0002		Every 2nd month
-W			Day of month
+W			Week day
 00			Monday
 2			3rd
 calculates the 3rd Monday of every 2nd month from Feb 2011 for 6 occurences
+
+YEARLY SPECIFIC PATTERN
+Y... 
+Monthly Type 1 char		W or M
+00						Day number (day of month 1 based or day of week 0 based)
+0						Weekday index 0 = 1st X, 3 = 4th X, 4 = last X
+00						Month of Year 1 = Jan
+E.g.
+
+Y 20110201 20150201 0000 0001 M 14 0 03
+Y			Yearly
+20110201	Feb 1st 2011
+20150201	Feb 1st 2015
+0000		No specifed num occurences
+0001		Every year
+M			Day of month
+14			14th
+0			Not used
+03			March
+calculates March 14th of every year from Feb 2011 to Feb 2015
+
+Y 20110201 00000000 0006 0002 W 00 2 04
+Y			Yearly
+20110201	Feb 1st 2011
+00000000	No specifed num occurences
+0006		6 occurences
+0002		Every 2nd year
+W			Week day
+00			Monday
+2			3rd
+04			April
+calculates the 3rd Monday in April of every 2nd year from Feb 2011 for 6 occurences

@@ -58,6 +58,7 @@
     <Compile Include="RecurrencyUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeeklyTests.cs" />
+    <Compile Include="YearlyRecurrencyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Recurrency\Recurrency.csproj">

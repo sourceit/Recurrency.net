@@ -32,6 +32,7 @@ namespace RecurrencyTests
             Assert.AreEqual(2, monthly.Interval);
             Assert.AreEqual(MonthlyType.Weekday, monthly.Type);
             Assert.AreEqual(01, monthly.Day);
+            Assert.AreEqual(DayOfWeek.Tuesday, monthly.DayOfWeek);
             Assert.AreEqual(3, monthly.Index);
         }
 
@@ -86,10 +87,25 @@ namespace RecurrencyTests
         }
 
         [Test]
-        public void GetFirstDate_RollsIntoNextMonth()
+        public void GetFirstDate_DayOfMonth_RollsIntoNextMonth()
         {
             MonthlyRecurrency monthly = new MonthlyRecurrency(new DateTime(2011, 2, 20), new DateTime(2011, 11, 30), 1, 14);
             Assert.AreEqual(new DateTime(2011, 3, 14), monthly.GetFirstDate()); // (2011, 2, 14) is before start date
+        }
+
+        [Test]
+        public void GetFirstDate_DayOfWeek_RollsIntoNextMonth()
+        {
+            // April 2011          
+            // M  T  W  T  F  S  S   
+            //             1  2  3  
+            // 4  5  6  7  8  9  10 
+            // 11 12 13 14 15 16 17 
+            // 18 19 20 21 22 23 24 
+            // 25 26 27 28 29 30
+
+            MonthlyRecurrency monthly = new MonthlyRecurrency(new DateTime(2011, 3, 20), new DateTime(2011, 11, 30), 1, DayOfWeek.Tuesday, DayIndex.Third);
+            Assert.AreEqual(new DateTime(2011, 4, 19), monthly.GetFirstDate()); // (2011, 3, 15) is before start date
         }
 
         [Test]

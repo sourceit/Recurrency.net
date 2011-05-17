@@ -12,10 +12,13 @@ namespace Recurrency
 
         protected const int _OffsetDay = _OffsetTypeSpecific + 1;
         protected const int _OffsetDayIndex = _OffsetDay + 2;
+
         public MonthlyRecurrency(string pattern)
             : base(pattern)
         {
-            SetTypeAndDays(_InitialPattern[_OffsetTypeSpecific] == 'M' ? MonthlyType.MonthDay : MonthlyType.Weekday, GetIntFromPattern(_InitialPattern, _OffsetDay, 2), GetIntFromPattern(_InitialPattern, _OffsetDayIndex, 1));
+            SetTypeAndDays(_InitialPattern[_OffsetTypeSpecific] == 'M' ? MonthlyType.MonthDay : MonthlyType.Weekday, 
+                GetIntFromPattern(_InitialPattern, _OffsetDay, 2), 
+                GetIntFromPattern(_InitialPattern, _OffsetDayIndex, 1));
         }
 
         public MonthlyRecurrency(DateTime startDate, DateTime endDate, int interval = 1, int dayOfMonth = 1)
@@ -123,7 +126,7 @@ namespace Recurrency
             { 
                 return day; 
             }
-            return day.AddMonths(1);
+            return GetDayInMonth(StartDate.AddMonths(1));
         }
 
         protected override DateTime? _GetNextFromExact(DateTime knownGood)
