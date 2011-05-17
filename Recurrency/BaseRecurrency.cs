@@ -18,14 +18,14 @@ namespace Recurrency
         protected const int _Max_Occurrences = 999999;
 
         protected const int _DateLength = 8;
-        protected const int _IntLength = 6;
+        protected const int _IntLength = 4;
         protected const int _OffsetStartDate = 1;
         protected const int _OffsetEndDate = _OffsetStartDate + _DateLength;
         protected const int _OffsetOccurrences = _OffsetEndDate + _DateLength;
         protected const int _OffsetInterval = _OffsetOccurrences + _IntLength;
         protected const int _OffsetTypeSpecific = _OffsetInterval + _IntLength;
 
-        protected const string _IntFormat = "000000";
+        protected const string _IntFormat = "0000";
 
         public BaseRecurrency(string pattern)
         {

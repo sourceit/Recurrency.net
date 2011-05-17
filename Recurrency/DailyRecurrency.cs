@@ -33,7 +33,7 @@ namespace Recurrency
             : base(startDate, numOccurrences)
         {
             SetTypeAndInterval(type, interval);
-        }
+        }        
 
         private void SetTypeAndInterval(DailyType type, int interval)
         {

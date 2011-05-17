@@ -11,8 +11,8 @@ RECURRENCY PATTERN
 Type 1 char					D | W | M | Y
 Start date 8 chars			yyyymmdd
 End date 8 chars			yyyymmdd, 00000000 if not specified, inclusive
-Num recurrences 6 chars		000000 if not specified
-Interval 6 chars			000000
+Num recurrences 4 chars		0000 if not specified
+Interval 4 chars			0000
 Type specific info x chars
 
 
@@ -26,22 +26,22 @@ Daily Type 1 char			X (Every x days) or W (weekdays)
 
 E.g 
 
-D 20111213 00000000 000012 000001 X
+D 20111213 00000000 0012 0001 X
 
 D			Daily
 20111213	25 Dec 2011
 00000000	No specified end date
-000012		12 occurences
-000001		1 day apart
+0012		12 occurences
+0001		1 day apart
 X           Every x days
  will calculate the 12 days of xmas for 2011
 
-D 20110201 20110228 000000 000001 W
+D 20110201 20110228 0000 0001 W
 D			Daily
 20110201	Feb 1st 2011
 20110228	Feb 28th 2011
-000000		No specifed num occurences
-000001		Not used, always treated as one for weekdays (for now)
+0000		No specifed num occurences
+0001		Not used, always treated as one for weekdays (for now)
 W			Weekdays
 
 will calculate every weekday in Feb 2011.
@@ -60,12 +60,40 @@ Note: Weeks start on mondays so that weekends stay together
 
 E.g.
 
-W 20110201 20110228 000000 000001 YNYNYNN
+W 20110201 20110228 0000 0001 YNYNYNN
 W			Weekly
 20110201	Feb 1st 2011
 20110228	Feb 28th 2011
-000000		No specifed num occurences
-000001		Every week
+0000		No specifed num occurences
+0001		Every week
 YNYNYNN		Mon, Wed, Fri
 
+MONTHLY SPECIFIC PATTERN
+M... 
+Monthly Type 1 char		W or M
+00						Day number (day of month 1 based or day of week 0 based)
+0						Weekday index 0 = 1st X, 3 = 4th X, 4 = last X
 
+E.g.
+
+M 20110201 20111130 0000 0001 M 14 0
+M			Monthly
+20110201	Feb 1st 2011
+20110228	Nov 30th 2011
+0000		No specifed num occurences
+0001		Every month
+M			Day of month
+14			14th
+0			Not used
+calculates the 14th of every month from Feb - Nov 2011
+
+M 20110201 00000000 0006 0002 W 00 2 
+M			Monthly
+20110201	Feb 1st 2011
+00000000	No specifed num occurences
+0006		6 occurences
+0002		Every 2nd month
+W			Day of month
+00			Monday
+2			3rd
+calculates the 3rd Monday of every 2nd month from Feb 2011 for 6 occurences

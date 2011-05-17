@@ -115,7 +115,7 @@ namespace RecurrencyTests
         [Test]
         public void Create_FromPattern_X()
         {
-            DailyRecurrency daily = new DailyRecurrency("D2011051200000000000156000050X");
+            DailyRecurrency daily = new DailyRecurrency("D 20110512 00000000 0156 0050 X");
             Assert.AreEqual(new DateTime(2011, 5, 12), daily.StartDate);
             Assert.IsNull(daily.EndDate);
             Assert.AreEqual(156, daily.Occurrences);
@@ -126,7 +126,7 @@ namespace RecurrencyTests
         [Test]
         public void Create_FromPattern_Weekly()
         {
-            DailyRecurrency daily = new DailyRecurrency("D 20110512 00000000 000156 000001 W");
+            DailyRecurrency daily = new DailyRecurrency("D 20110512 00000000 0156 0001 W");
             Assert.AreEqual(new DateTime(2011, 5, 12), daily.StartDate);
             Assert.IsNull(daily.EndDate);
             Assert.AreEqual(156, daily.Occurrences);
@@ -137,14 +137,14 @@ namespace RecurrencyTests
         public void GetPattern_X()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 05, 22), DailyType.EveryXDays, 156);
-            Assert.AreEqual("D2011051220110522000000000156X", daily.GetPattern());
+            Assert.AreEqual("D201105122011052200000156X", daily.GetPattern());
         }
 
         [Test]
         public void GetPattern_Weekly()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays);
-            Assert.AreEqual("D2011051200000000000010000001W", daily.GetPattern());
+            Assert.AreEqual("D201105120000000000100001W", daily.GetPattern());
         }
     }
 }
