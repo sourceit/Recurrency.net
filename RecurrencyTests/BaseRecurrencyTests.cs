@@ -55,14 +55,14 @@ namespace RecurrencyTests
         public void GetInitialPattern_EndDate()
         {
             var daily = new DailyRecurrency(new DateTime(2011, 10, 7), new DateTime(2011, 12, 25), interval: 1234);
-            Assert.AreEqual("201110072011122500001234", daily.GetInitialPattern());
+            Assert.AreEqual("D201110072011122500001234", daily.GetInitialPattern());
         }
 
         [Test]
         public void GetInitialPattern_Occurences()
         {
             var daily = new DailyRecurrency(new DateTime(2011, 10, 7), 52, interval: 1234);
-            Assert.AreEqual("201110070000000000521234", daily.GetInitialPattern());
+            Assert.AreEqual("D201110070000000000521234", daily.GetInitialPattern());
         }
     }
 }

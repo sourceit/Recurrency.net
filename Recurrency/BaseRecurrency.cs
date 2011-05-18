@@ -7,13 +7,6 @@ namespace Recurrency
 {
     public abstract class BaseRecurrency
     {
-        //public BaseRecurrency(DateTime startDate)
-        //{
-        //    _StartDate = startDate;
-        //    _EndDate = null;
-        //    _Occurrences = 10;
-        //}
-
         protected const int _Default_Occurrences = 10;
         protected const int _Max_Occurrences = 999999;
 
@@ -30,6 +23,11 @@ namespace Recurrency
         public BaseRecurrency(string pattern)
         {
             _InitialPattern = pattern.Replace(" ", "").ToUpper();
+
+            if(string.IsNullOrEmpty(_InitialPattern) || _InitialPattern[0] != GetTypeCode())
+            {
+                throw new ArgumentNullException("Invalid pattern supplied: " + pattern ?? "");
+            }
 
             _StartDate = GetDateFromPattern(_InitialPattern, _OffsetStartDate).Value;
             _EndDate = GetDateFromPattern(_InitialPattern, _OffsetEndDate);
@@ -150,9 +148,14 @@ namespace Recurrency
             throw new NotImplementedException();
         }
 
+        public virtual char GetTypeCode()
+        {
+            return '?';
+        }
+
         public string GetInitialPattern()
         {
-            return string.Format("{0}{1}{2}{3}", DateToPatternFormat(_StartDate), DateToPatternFormat(_EndDate), _Occurrences.ToString(_IntFormat), _Interval.ToString(_IntFormat));
+            return string.Format("{0}{1}{2}{3}{4}", GetTypeCode(), DateToPatternFormat(_StartDate), DateToPatternFormat(_EndDate), _Occurrences.ToString(_IntFormat), _Interval.ToString(_IntFormat));
         }
     }
 }

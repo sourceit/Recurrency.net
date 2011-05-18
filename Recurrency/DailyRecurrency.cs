@@ -9,6 +9,7 @@ namespace Recurrency
 
     public class DailyRecurrency : BaseRecurrency
     {
+        
         public DailyRecurrency(string pattern)
             : base(pattern)
         {
@@ -70,7 +71,14 @@ namespace Recurrency
 
         public override string GetPattern()
         {
-            return string.Format("D{0}{1}", GetInitialPattern(), Type == DailyType.Weekdays ? 'W' : 'X');
+            return string.Format("{0}{1}", GetInitialPattern(), Type == DailyType.Weekdays ? 'W' : 'X');
+        }
+
+        public const char TypeCode = 'D';
+ 
+        public override char GetTypeCode()
+        {
+            return TypeCode;
         }
     }
 }

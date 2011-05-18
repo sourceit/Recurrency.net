@@ -187,5 +187,26 @@ namespace RecurrencyTests
             YearlyRecurrency yearly = new YearlyRecurrency(new DateTime(2011, 4, 20), new DateTime(2011, 11, 30), 1, 14, 4);
             Assert.AreEqual(new DateTime(2012, 4, 14), yearly.GetFirstDate()); // (2011, 4, 14) is before start date
         }
+
+        [Test]
+        public void GetPattern_DayOfMonth()
+        {
+            YearlyRecurrency yearly = new YearlyRecurrency("Y 20110201 20150201 0000 0001 M 14 0 03");
+            Assert.AreEqual("Y201102012015020100000001M14003", yearly.GetPattern());
+        }
+
+        [Test]
+        public void GetPattern_DayOfWeek()
+        {
+            YearlyRecurrency yearly = new YearlyRecurrency("Y 20110201 00000000 0006 0002 W 00 2 04");
+            Assert.AreEqual("Y201102010000000000060002W00204", yearly.GetPattern());
+        }
+
+        [Test]
+        public void GetTypeCode()
+        {
+            YearlyRecurrency yearly = new YearlyRecurrency("Y 20110201 00000000 0006 0002 W 00 2 04");
+            Assert.AreEqual('Y', yearly.GetTypeCode());
+        }
     }
 }

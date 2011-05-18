@@ -146,5 +146,12 @@ namespace RecurrencyTests
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays);
             Assert.AreEqual("D201105120000000000100001W", daily.GetPattern());
         }
+
+        [Test]
+        public void GetTypeCode()
+        {
+            DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays);
+            Assert.AreEqual('D', daily.GetTypeCode());
+        }
     }
 }

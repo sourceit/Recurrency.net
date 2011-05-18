@@ -13,12 +13,20 @@ namespace Recurrency
         protected const int _OffsetDay = _OffsetTypeSpecific + 1;
         protected const int _OffsetDayIndex = _OffsetDay + 2;
 
+        protected const char Type_MonthDay = 'M';
+        protected const char Type_WeekDay = 'W';
+
         public MonthlyRecurrency(string pattern)
             : base(pattern)
         {
-            SetTypeAndDays(_InitialPattern[_OffsetTypeSpecific] == 'M' ? MonthlyType.MonthDay : MonthlyType.Weekday, 
+            SetTypeAndDays(_InitialPattern[_OffsetTypeSpecific] == Type_MonthDay ? MonthlyType.MonthDay : MonthlyType.Weekday, 
                 GetIntFromPattern(_InitialPattern, _OffsetDay, 2), 
                 GetIntFromPattern(_InitialPattern, _OffsetDayIndex, 1));
+        }
+
+        public override string GetPattern()
+        {
+            return string.Format("{0}{1}{2}{3}", GetInitialPattern(), Type == MonthlyType.MonthDay ? Type_MonthDay : Type_WeekDay, Day.ToString("00"), Index);
         }
 
         public MonthlyRecurrency(DateTime startDate, DateTime endDate, int interval = 1, int dayOfMonth = 1)
@@ -133,5 +141,13 @@ namespace Recurrency
         {
             return GetDayInMonth(knownGood.FirstDayOfMonth().AddMonths(Interval));
         }
+
+        public const char TypeCode = 'M';
+
+        public override char GetTypeCode()
+        {
+            return TypeCode;
+        }
+
     }
 }

@@ -66,5 +66,17 @@ namespace Recurrency
         {
             return GetDayInYear(knownGood.Year + Interval);
         }
+
+        public const char TypeCode = 'Y';
+
+        public override char GetTypeCode()
+        {
+            return TypeCode;
+        }
+
+        public override string GetPattern()
+        {
+            return base.GetPattern() + Month.ToString("00");
+        }
     }
 }

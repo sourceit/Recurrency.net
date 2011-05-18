@@ -161,5 +161,23 @@ namespace Recurrency
             DateTime nextWeek = knownGood.FirstDayOfWeek_Mondayised().AddDays(7 * Interval);
             return GetFirstDateFromInclusive(nextWeek);
         }
+
+        public const char TypeCode = 'W';
+
+        public override char GetTypeCode()
+        {
+            return TypeCode;
+        }
+
+        public override string GetPattern()
+        {
+            var builder = new StringBuilder(GetInitialPattern());
+
+            foreach (var useDay in _Days)
+            {
+                builder.Append(useDay ? 'Y' : 'N');
+            }
+            return builder.ToString();
+        }
     }
 }

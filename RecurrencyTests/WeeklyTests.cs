@@ -13,7 +13,7 @@ namespace RecurrencyTests
         [Test]
         public void Create_FromPattern()
         {
-            WeeklyRecurrency weekly = new WeeklyRecurrency("D 20110512 00000000 0156 0050 YNYNYNN");
+            WeeklyRecurrency weekly = new WeeklyRecurrency("W 20110512 00000000 0156 0050 YNYNYNN");
             Assert.AreEqual(new DateTime(2011, 5, 12), weekly.StartDate);
             Assert.IsNull(weekly.EndDate);
             Assert.AreEqual(156, weekly.Occurrences);
@@ -167,6 +167,20 @@ namespace RecurrencyTests
 
             Assert.IsNull(weekly.GetNextDate(new DateTime(2011, 5, 1)));
 
+        }
+
+        [Test]
+        public void GetTypeCode()
+        {
+            WeeklyRecurrency weekly = new WeeklyRecurrency("W 20110512 00000000 0156 0050 YNYNYNN");
+            Assert.AreEqual('W', weekly.GetTypeCode());
+        }
+
+        [Test]
+        public void GetPattern()
+        {
+            WeeklyRecurrency weekly = new WeeklyRecurrency("W 20110512 00000000 0156 0050 YNYNYNN");
+            Assert.AreEqual("W201105120000000001560050YNYNYNN", weekly.GetPattern());
         }
     }
 }
