@@ -208,5 +208,15 @@ namespace RecurrencyTests
             YearlyRecurrency yearly = new YearlyRecurrency("Y 20110201 00000000 0006 0002 W 00 2 04");
             Assert.AreEqual('Y', yearly.GetTypeCode());
         }
+
+        [Test]
+        public void ToString()
+        {
+            YearlyRecurrency monthly = new YearlyRecurrency(new DateTime(2011, 5, 12), 10, 1, 4, 7);
+            Assert.AreEqual("Every year on the 4th of Jul from 12 May 2011 for 10 occurences", monthly.ToString());
+
+            monthly = new YearlyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, DayOfWeek.Wednesday, DayIndex.Second, 7);
+            Assert.AreEqual("Every 2 years on the 2nd Wed in Jul from 12 May 2011 until 12 Jul 2011", monthly.ToString());
+        }
     }
 }

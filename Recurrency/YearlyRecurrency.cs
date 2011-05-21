@@ -78,5 +78,15 @@ namespace Recurrency
         {
             return base.GetPattern() + Month.ToString("00");
         }
+
+        public string GetMonthText()
+        {
+            return (Type == MonthlyType.MonthDay ? "of " : "in ") +  new DateTime(2000, Month, 1).ToString("MMM");
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} on the {1} {2} {3}", ToStringPrefix("year"), GetDayText(), GetMonthText(), ToStringSuffix());
+        }
     }
 }

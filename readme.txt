@@ -1,4 +1,4 @@
-Recurrency.net v0.2
+Recurrency.net v0.3
 
 WHAT IS RECURRENCY.NET
 Recurrency.net (r.n) is a recurring date library for .net.

@@ -225,5 +225,25 @@ namespace RecurrencyTests
             MonthlyRecurrency monthly = new MonthlyRecurrency("M 20110201 00000000 0006 0002 W 01 3");
             Assert.AreEqual('M', monthly.GetTypeCode());
         }
+
+        [Test]
+        public void GetDayText()
+        {
+            MonthlyRecurrency monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), 10, 1, 4);
+            Assert.AreEqual("4th", monthly.GetDayText());
+
+            monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, DayOfWeek.Wednesday, DayIndex.Second);
+            Assert.AreEqual("2nd Wed", monthly.GetDayText());
+        }
+
+        [Test]
+        public void ToString()
+        {
+            MonthlyRecurrency monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), 10, 1, 4 );
+            Assert.AreEqual("Every month on the 4th from 12 May 2011 for 10 occurences", monthly.ToString());
+
+            monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, DayOfWeek.Wednesday, DayIndex.Second);
+            Assert.AreEqual("Every 2 months on the 2nd Wed from 12 May 2011 until 12 Jul 2011", monthly.ToString());
+        }
     }
 }

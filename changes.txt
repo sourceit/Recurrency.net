@@ -1,0 +1,5 @@
+v0.3: May 21, 2011
+ToString() now working for all recurrency types
+
+v0.2
+Basic implimention done for all recurrency types 

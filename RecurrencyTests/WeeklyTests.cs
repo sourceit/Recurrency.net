@@ -182,5 +182,25 @@ namespace RecurrencyTests
             WeeklyRecurrency weekly = new WeeklyRecurrency("W 20110512 00000000 0156 0050 YNYNYNN");
             Assert.AreEqual("W201105120000000001560050YNYNYNN", weekly.GetPattern());
         }
+
+        [Test]
+        public void GetDayNames()
+        {
+            WeeklyRecurrency weekly = new WeeklyRecurrency(new DateTime(2011, 5, 12), 10, 1, monday: true, tuesday: true);
+            Assert.AreEqual("Mon, Tue", weekly.GetDayNames());
+            weekly.Days = WeeklyRecurrency.WeekEnd;
+            Assert.AreEqual("Sat, Sun", weekly.GetDayNames());
+            weekly.Days = WeeklyRecurrency.EveryDay;
+            Assert.AreEqual("Mon, Tue, Wed, Thu, Fri, Sat, Sun", weekly.GetDayNames());
+        }
+        [Test]
+        public void ToString()
+        {
+            WeeklyRecurrency weekly = new WeeklyRecurrency(new DateTime(2011, 5, 12), 10, 1, monday: true, tuesday: true);
+            Assert.AreEqual("Every week on Mon, Tue from 12 May 2011 for 10 occurences", weekly.ToString());
+
+            weekly = new WeeklyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, monday: true, wednesday: true);
+            Assert.AreEqual("Every 2 weeks on Mon, Wed from 12 May 2011 until 12 Jul 2011", weekly.ToString());
+        }
     }
 }

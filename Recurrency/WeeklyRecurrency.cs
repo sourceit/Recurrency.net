@@ -179,5 +179,26 @@ namespace Recurrency
             }
             return builder.ToString();
         }
+
+        public string GetDayNames()
+        {
+            StringBuilder days = new StringBuilder();
+            string sep = "";
+            for (int i = 0; i < 7; i++)
+            {
+                if (_Days[i])
+                {
+                    days.Append(sep);
+                    sep = ", ";
+                    days.Append(GetDayOfWeekName(i));
+                }
+            }
+            return days.ToString();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} on {1} {2}", ToStringPrefix("week"), GetDayNames(), ToStringSuffix());
+        }
     }
 }

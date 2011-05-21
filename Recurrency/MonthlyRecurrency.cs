@@ -9,6 +9,48 @@ namespace Recurrency
     
     public class MonthlyRecurrency : BaseRecurrency
     {
+        public static string[] DayText = 
+        {
+            "1st", 
+            "2nd", 
+            "3rd", 
+            "4th", 
+            "5th", 
+            "6th", 
+            "7th", 
+            "8th", 
+            "9th", 
+            "10th", 
+            "11th", 
+            "12th", 
+            "13th", 
+            "14th", 
+            "15th", 
+            "16th", 
+            "17th", 
+            "18th", 
+            "19th", 
+            "20th", 
+            "21st", 
+            "22nd", 
+            "23rd", 
+            "25th", 
+            "26th", 
+            "27th", 
+            "28th", 
+            "29th", 
+            "30th", 
+            "31st", 
+        };
+
+        public static string[] IndexText =
+        {
+            "1st", 
+            "2nd", 
+            "3rd", 
+            "4th", 
+            "last", 
+        };
 
         protected const int _OffsetDay = _OffsetTypeSpecific + 1;
         protected const int _OffsetDayIndex = _OffsetDay + 2;
@@ -149,5 +191,21 @@ namespace Recurrency
             return TypeCode;
         }
 
+        public string GetDayText()
+        {
+            if (Type == MonthlyType.MonthDay)
+            {
+                return DayText[_Day - 1];
+            }
+            else
+            {
+                return IndexText[Index] + " " + GetDayOfWeekName(_Day);
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} on the {1} {2}", ToStringPrefix("month"), GetDayText(), ToStringSuffix());
+        }
     }
 }

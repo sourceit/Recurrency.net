@@ -80,5 +80,21 @@ namespace Recurrency
         {
             return TypeCode;
         }
+
+        private string GetTypeName()
+        {
+            switch (Type)
+            {
+                case DailyType.EveryXDays: return "day";
+                case DailyType.Weekdays: return "weekday";
+                default: throw new Exception("Unknown daily type");
+            }
+        }
+
+        public override string ToString()
+        {
+
+            return string.Format("{0} {1}", ToStringPrefix(GetTypeName()), ToStringSuffix());
+        }
     }
 }

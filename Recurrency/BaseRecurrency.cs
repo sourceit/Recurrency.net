@@ -157,5 +157,32 @@ namespace Recurrency
         {
             return string.Format("{0}{1}{2}{3}{4}", GetTypeCode(), DateToPatternFormat(_StartDate), DateToPatternFormat(_EndDate), _Occurrences.ToString(_IntFormat), _Interval.ToString(_IntFormat));
         }
+
+        public string ToStringPrefix(string type)
+        {
+            if (Interval == 1)
+            {
+                return string.Format("Every {0}", type);
+            }
+            return string.Format("Every {0} {1}s", Interval, type);
+        }
+
+        public string ToStringSuffix()
+        {
+            if (_EndDate.HasValue)
+            {
+                return string.Format("from {0} until {1}", _StartDate.ToString("dd MMM yyyy"), _EndDate.Value.ToString("dd MMM yyyy"));
+            }
+            else
+            {
+                return string.Format("from {0} for {1} occurences", _StartDate.ToString("dd MMM yyyy"), _Occurrences);
+            }
+        }
+
+        public static string GetDayOfWeekName(int weekday)
+        {
+            var day = new DateTime(2011, 5, 16 + weekday);
+            return day.ToString("ddd");
+        }
     }
 }

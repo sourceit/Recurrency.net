@@ -152,6 +152,26 @@ namespace RecurrencyTests
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays);
             Assert.AreEqual('D', daily.GetTypeCode());
+        }        
+        
+        [Test]
+        public void ToStringSuffix()
+        {
+            DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays, 1);
+            Assert.AreEqual("from 12 May 2011 for 10 occurences", daily.ToStringSuffix());
+
+            daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), DailyType.EveryXDays, 2);
+            Assert.AreEqual("from 12 May 2011 until 12 Jul 2011", daily.ToStringSuffix());
+        }
+
+        [Test]
+        public void ToString()
+        {
+            DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays, 1);
+            Assert.AreEqual("Every weekday from 12 May 2011 for 10 occurences", daily.ToString());
+
+            daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), DailyType.EveryXDays, 2);
+            Assert.AreEqual("Every 2 days from 12 May 2011 until 12 Jul 2011", daily.ToString());
         }
     }
 }
