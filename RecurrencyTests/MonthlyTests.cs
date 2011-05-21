@@ -240,7 +240,7 @@ namespace RecurrencyTests
         public void ToString()
         {
             MonthlyRecurrency monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), 10, 1, 4 );
-            Assert.AreEqual("Every month on the 4th from 12 May 2011 for 10 occurences", monthly.ToString());
+            Assert.AreEqual("Every month on the 4th from 12 May 2011 for 10 occurrences", monthly.ToString());
 
             monthly = new MonthlyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, DayOfWeek.Wednesday, DayIndex.Second);
             Assert.AreEqual("Every 2 months on the 2nd Wed from 12 May 2011 until 12 Jul 2011", monthly.ToString());

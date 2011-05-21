@@ -70,5 +70,14 @@ namespace RecurrencyTests
             Assert.AreEqual(14, yearly.Day);
             Assert.AreEqual(3, yearly.Month);
         } 
+
+        [Test]
+        public void GetDescription()
+        {
+            Assert.AreEqual("Every 50 days from 12 May 2011 for 156 occurrences", RecurrencyUtils.GetDescription("D 20110512 00000000 0156 0050 X"));
+            Assert.AreEqual("Every 50 weeks on Mon, Wed, Fri from 12 May 2011 for 156 occurrences", RecurrencyUtils.GetDescription("W 20110512 00000000 0156 0050 YNYNYNN"));
+            Assert.AreEqual("Every 2 months on the 4th Tue from 01 Feb 2011 for 6 occurrences", RecurrencyUtils.GetDescription("M 20110201 00000000 0006 0002 W 01 3"));
+            Assert.AreEqual("Every year on the 14th of Mar from 01 Feb 2011 until 01 Feb 2015", RecurrencyUtils.GetDescription("Y 20110201 20150201 0000 0001 M 14 0 03"));
+        }
     }
 }

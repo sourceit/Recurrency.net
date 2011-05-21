@@ -24,5 +24,10 @@ namespace Recurrency
 
             throw new ArgumentNullException("Invalid pattern supplied: " + pattern ?? "");
         }
+
+        public static string GetDescription(string pattern)
+        {
+            return Create(pattern).ToString();
+        }
     }
 }

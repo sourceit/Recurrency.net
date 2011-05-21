@@ -175,7 +175,7 @@ namespace Recurrency
             }
             else
             {
-                return string.Format("from {0} for {1} occurences", _StartDate.ToString("dd MMM yyyy"), _Occurrences);
+                return string.Format("from {0} for {1} occurrences", _StartDate.ToString("dd MMM yyyy"), _Occurrences);
             }
         }
 

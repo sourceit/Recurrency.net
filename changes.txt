@@ -1,3 +1,7 @@
+v0.04
+Fixed spelling error
+Added GetDescription utility method
+
 v0.3: May 21, 2011
 ToString() now working for all recurrency types
 

@@ -33,7 +33,7 @@ D 20111213 00000000 0012 0001 X
 D			Daily
 20111213	25 Dec 2011
 00000000	No specified end date
-0012		12 occurences
+0012		12 occurrences
 0001		1 day apart
 X           Every x days
  will calculate the 12 days of xmas for 2011
@@ -42,7 +42,7 @@ D 20110201 20110228 0000 0001 W
 D			Daily
 20110201	Feb 1st 2011
 20110228	Feb 28th 2011
-0000		No specifed num occurences
+0000		No specifed num occurrences
 0001		Not used, always treated as one for weekdays (for now)
 W			Weekdays
 
@@ -66,7 +66,7 @@ W 20110201 20110228 0000 0001 YNYNYNN
 W			Weekly
 20110201	Feb 1st 2011
 20110228	Feb 28th 2011
-0000		No specifed num occurences
+0000		No specifed num occurrences
 0001		Every week
 YNYNYNN		Mon, Wed, Fri
 
@@ -82,7 +82,7 @@ M 20110201 20111130 0000 0001 M 14 0
 M			Monthly
 20110201	Feb 1st 2011
 20110228	Nov 30th 2011
-0000		No specifed num occurences
+0000		No specifed num occurrences
 0001		Every month
 M			Day of month
 14			14th
@@ -92,13 +92,13 @@ calculates the 14th of every month from Feb - Nov 2011
 M 20110201 00000000 0006 0002 W 00 2 
 M			Monthly
 20110201	Feb 1st 2011
-00000000	No specifed num occurences
-0006		6 occurences
+00000000	No specifed num occurrences
+0006		6 occurrences
 0002		Every 2nd month
 W			Week day
 00			Monday
 2			3rd
-calculates the 3rd Monday of every 2nd month from Feb 2011 for 6 occurences
+calculates the 3rd Monday of every 2nd month from Feb 2011 for 6 occurrences
 
 YEARLY SPECIFIC PATTERN
 Y... 
@@ -112,7 +112,7 @@ Y 20110201 20150201 0000 0001 M 14 0 03
 Y			Yearly
 20110201	Feb 1st 2011
 20150201	Feb 1st 2015
-0000		No specifed num occurences
+0000		No specifed num occurrences
 0001		Every year
 M			Day of month
 14			14th
@@ -123,11 +123,12 @@ calculates March 14th of every year from Feb 2011 to Feb 2015
 Y 20110201 00000000 0006 0002 W 00 2 04
 Y			Yearly
 20110201	Feb 1st 2011
-00000000	No specifed num occurences
-0006		6 occurences
+00000000	No specifed num occurrences
+0006		6 occurrences
 0002		Every 2nd year
 W			Week day
 00			Monday
 2			3rd
 04			April
-calculates the 3rd Monday in April of every 2nd year from Feb 2011 for 6 occurences
+calculates the 3rd Monday in April of every 2nd year from Feb 2011 for 6 occurrences
+

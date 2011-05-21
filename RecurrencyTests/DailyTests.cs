@@ -158,7 +158,7 @@ namespace RecurrencyTests
         public void ToStringSuffix()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays, 1);
-            Assert.AreEqual("from 12 May 2011 for 10 occurences", daily.ToStringSuffix());
+            Assert.AreEqual("from 12 May 2011 for 10 occurrences", daily.ToStringSuffix());
 
             daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), DailyType.EveryXDays, 2);
             Assert.AreEqual("from 12 May 2011 until 12 Jul 2011", daily.ToStringSuffix());
@@ -168,7 +168,7 @@ namespace RecurrencyTests
         public void ToString()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 5, 12), 10, DailyType.Weekdays, 1);
-            Assert.AreEqual("Every weekday from 12 May 2011 for 10 occurences", daily.ToString());
+            Assert.AreEqual("Every weekday from 12 May 2011 for 10 occurrences", daily.ToString());
 
             daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), DailyType.EveryXDays, 2);
             Assert.AreEqual("Every 2 days from 12 May 2011 until 12 Jul 2011", daily.ToString());
