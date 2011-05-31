@@ -207,5 +207,10 @@ namespace Recurrency
         {
             return string.Format("{0} on the {1} {2}", ToStringPrefix("month"), GetDayText(), ToStringSuffix());
         }
+
+        public override RecurrencyType GetType()
+        {
+            return RecurrencyType.Monthly;
+        }
     }
 }

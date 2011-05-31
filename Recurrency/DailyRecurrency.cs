@@ -96,5 +96,10 @@ namespace Recurrency
 
             return string.Format("{0} {1}", ToStringPrefix(GetTypeName()), ToStringSuffix());
         }
+
+        public override RecurrencyType GetType()
+        {
+            return RecurrencyType.Daily;
+        }
     }
 }

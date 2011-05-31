@@ -5,6 +5,8 @@ using System.Text;
 
 namespace Recurrency
 {
+    public enum RecurrencyType { Daily, Weekly, Monthly, Yearly }
+
     public abstract class BaseRecurrency
     {
         protected const int _Default_Occurrences = 10;
@@ -151,6 +153,11 @@ namespace Recurrency
         public virtual char GetTypeCode()
         {
             return '?';
+        }
+
+        public virtual RecurrencyType GetType()
+        {
+            throw new NotImplementedException();
         }
 
         public string GetInitialPattern()

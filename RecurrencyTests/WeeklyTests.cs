@@ -202,5 +202,12 @@ namespace RecurrencyTests
             weekly = new WeeklyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, monday: true, wednesday: true);
             Assert.AreEqual("Every 2 weeks on Mon, Wed from 12 May 2011 until 12 Jul 2011", weekly.ToString());
         }
+
+        [Test]
+        public void GetType()
+        {
+            var r = new WeeklyRecurrency(DateTime.Today);
+            Assert.AreEqual(RecurrencyType.Weekly, r.GetType());
+        }
     }
 }

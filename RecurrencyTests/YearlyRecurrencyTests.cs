@@ -218,5 +218,12 @@ namespace RecurrencyTests
             monthly = new YearlyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), 2, DayOfWeek.Wednesday, DayIndex.Second, 7);
             Assert.AreEqual("Every 2 years on the 2nd Wed in Jul from 12 May 2011 until 12 Jul 2011", monthly.ToString());
         }
+
+        [Test]
+        public void GetType()
+        {
+            var r = new YearlyRecurrency(DateTime.Today, dayOfMonth: 3);
+            Assert.AreEqual(RecurrencyType.Yearly, r.GetType());
+        }
     }
 }

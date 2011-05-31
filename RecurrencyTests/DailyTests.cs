@@ -173,5 +173,12 @@ namespace RecurrencyTests
             daily = new DailyRecurrency(new DateTime(2011, 5, 12), new DateTime(2011, 7, 12), DailyType.EveryXDays, 2);
             Assert.AreEqual("Every 2 days from 12 May 2011 until 12 Jul 2011", daily.ToString());
         }
+
+        [Test]
+        public void GetType()
+        {
+            var r = new DailyRecurrency(DateTime.Today);
+            Assert.AreEqual(RecurrencyType.Daily, r.GetType());
+        }
     }
 }

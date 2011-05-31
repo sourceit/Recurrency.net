@@ -63,7 +63,10 @@ namespace Recurrency
             set
             {
                 if(value == null || value.Length < 7) { throw new ArgumentException("Insufficient days.  There must be at least 7 days in the array."); }
-                _Days = value;
+                for (int i = 0; i < 7; i++)
+                {
+                    _Days[i] = value[i];
+                }
             }
         }
 
@@ -199,6 +202,11 @@ namespace Recurrency
         public override string ToString()
         {
             return string.Format("{0} on {1} {2}", ToStringPrefix("week"), GetDayNames(), ToStringSuffix());
+        }
+
+        public override RecurrencyType GetType()
+        {
+            return RecurrencyType.Weekly;
         }
     }
 }

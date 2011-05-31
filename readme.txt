@@ -1,11 +1,13 @@
-Recurrency.net v0.3
+Recurrency.net v0.4
 
 WHAT IS RECURRENCY.NET
 Recurrency.net (r.n) is a recurring date library for .net.
 
 E.g.  You can use r.n to calcuate the 1st Wednesday in every month till Jan 1st 2020.
 
+EXAMPLE USAGE
 
+STORING TO DATABASE
 
 RECURRENCY PATTERNS
 

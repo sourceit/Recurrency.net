@@ -88,5 +88,10 @@ namespace Recurrency
         {
             return string.Format("{0} on the {1} {2} {3}", ToStringPrefix("year"), GetDayText(), GetMonthText(), ToStringSuffix());
         }
+
+        public override RecurrencyType GetType()
+        {
+            return RecurrencyType.Yearly;
+        }
     }
 }
