@@ -1,0 +1,122 @@
+﻿@model Recurrency.RecurrencyInfo
+@using Recurrency
+@using MvcRecurrency.Helpers
+
+<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+   {
+   padding-left: 50pt;
+   padding-right: 50pt;
+   }
+-->
+</STYLE>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Range</legend>
+        <p>
+            Start @Html.TextBox("StartDate", string.Format("{0:d}", Model.StartDate))
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </p>
+
+        <p>
+            End by @Html.TextBox("EndDate", string.Format("{0:d}", Model.EndDate))
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </p>
+
+        <p class="editor-field">
+            End after @Html.EditorFor(model => model.Occurrences) occurences
+            @Html.ValidationMessageFor(model => model.Occurrences)
+        </p>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Daily</legend>
+        @Html.RadioButtonFor(m => m.Type, Recurrency.RecurrencyType.Daily) Daily
+        <div class='indented'>
+            
+            <p>
+                @Html.RadioButtonFor(m => m.DailyType, DailyType.EveryXDays) Every @Html.EditorFor(model => model.DailyInterval) days
+                @Html.ValidationMessageFor(model => model.DailyInterval)
+            </p>
+            <p>
+                @Html.RadioButtonFor(m => m.DailyType, DailyType.Weekdays) Every weekday
+            </p>
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Weekly</legend>
+        @Html.RadioButtonFor(m => m.Type, Recurrency.RecurrencyType.Weekly) Weekly
+        <div class='indented'>
+            <p>
+                Recur every @Html.EditorFor(model => model.WeeklyInterval) week(s) on 
+                @Html.ValidationMessageFor(model => model.WeeklyInterval)        
+            </p>
+
+            <p>
+                @Html.EditorFor(model => model.Monday) @Html.LabelFor(model => model.Monday)
+                @Html.EditorFor(model => model.Tuesday) @Html.LabelFor(model => model.Tuesday)
+                @Html.EditorFor(model => model.Wednesday) @Html.LabelFor(model => model.Wednesday)
+                @Html.EditorFor(model => model.Thursday) @Html.LabelFor(model => model.Thursday)
+                @Html.EditorFor(model => model.Friday) @Html.LabelFor(model => model.Friday)
+                @Html.EditorFor(model => model.Saturday) @Html.LabelFor(model => model.Saturday)
+                @Html.EditorFor(model => model.Sunday) @Html.LabelFor(model => model.Sunday)
+            </p>
+        </div>
+    </fieldset>
+        <fieldset>
+        <legend>Monthly</legend>
+        @Html.RadioButtonFor(m => m.Type, Recurrency.RecurrencyType.Monthly) Monthly
+        <div class='indented'>
+            <p>
+                @Html.RadioButtonFor(m => m.MonthlyType, MonthlyType.MonthDay) Day @Html.EditorFor(model => model.MonthlyDay) @Html.ValidationMessageFor(model => model.MonthlyDay)
+            </p>
+            <p>
+                @Html.RadioButtonFor(m => m.MonthlyType, MonthlyType.Weekday) The @Html.DropDownListFor(model => model.MonthlyDayIndex, Model.MonthlyDayIndex.ToSelectList()) @Html.DropDownListFor(model => model.MonthlyDayOfWeek, Model.MonthlyDayOfWeek.ToSelectList())
+            </p>
+            <p>
+                Of every @Html.EditorFor(model => model.MonthlyInterval) months
+                @Html.ValidationMessageFor(model => model.MonthlyInterval)
+            </p>
+        </div>
+    </fieldset>
+        <fieldset>
+        <legend>Yearly</legend>
+        @Html.RadioButtonFor(m => m.Type, Recurrency.RecurrencyType.Yearly) Yearly
+        <div class='indented'>
+            <p>
+                Recur every @Html.EditorFor(model => model.YearlyInterval) year(s)
+                @Html.ValidationMessageFor(model => model.YearlyInterval)
+            </p>
+
+   
+            <p>
+                @Html.RadioButtonFor(m => m.YearlyType, MonthlyType.MonthDay) Day @Html.EditorFor(model => model.YearlyDay) @Html.ValidationMessageFor(model => model.YearlyDay)
+            </p>
+            <p>
+                @Html.RadioButtonFor(m => m.YearlyType, MonthlyType.Weekday) The @Html.DropDownListFor(model => model.YearlyDayIndex, Model.YearlyDayIndex.ToSelectList()) @Html.DropDownListFor(model => model.YearlyDayOfWeek, Model.YearlyDayOfWeek.ToSelectList())
+            </p>
+            <p>
+                of month @Html.DropDownListFor(model => model.YearlyMonth, Model.MonthSelectList())
+                @Html.ValidationMessageFor(model => model.YearlyMonth)
+            </p>
+        </div>
+    </fieldset>
+    
+        <p>
+            <input type="submit" value="Save" />
+        </p>    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

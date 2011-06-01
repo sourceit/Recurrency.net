@@ -1,0 +1,16 @@
+﻿@model Recurrency.RecurrencyInfo
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+Pattern: @Model.GetPattern()
+</p>
+<p>
+Description: @Model.GetRecurrency().ToString()
+</p>
+
+@Html.Partial("RecurrencyEdit", Model)

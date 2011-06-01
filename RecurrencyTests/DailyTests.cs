@@ -26,6 +26,37 @@ namespace RecurrencyTests
         }
 
         [Test]
+        public void ForEach_Occurences()
+        {
+            DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 4, 1), 5, DailyType.EveryXDays, 1);
+            var dates = new List<DateTime>();
+
+            foreach (var date in daily.Dates())
+            {
+                dates.Add(date);
+            }
+            Assert.AreEqual(new DateTime(2011, 4, 1), dates.First());
+            Assert.AreEqual(new DateTime(2011, 4, 5), dates.Last());
+            Assert.AreEqual(5, dates.Count());
+        }
+
+        [Test]
+        public void ForEach_EndDate()
+        {
+            DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 4, 5), new DateTime(2011, 4, 25), DailyType.EveryXDays, 5);
+            var dates = new List<DateTime>();
+
+            foreach (var date in daily.Dates())
+            {
+                dates.Add(date);
+            }
+            Assert.AreEqual(new DateTime(2011, 4, 5), dates.First());
+            Assert.AreEqual(new DateTime(2011, 4, 25), dates.Last());
+            Assert.AreEqual(5, dates.Count());
+        }
+
+
+        [Test]
         public void GetNextDate_Xis5_Exact()
         {
             DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 4, 5), new DateTime(2011, 4, 25), DailyType.EveryXDays, 5);
@@ -180,5 +211,6 @@ namespace RecurrencyTests
             var r = new DailyRecurrency(DateTime.Today);
             Assert.AreEqual(RecurrencyType.Daily, r.GetType());
         }
+
     }
 }

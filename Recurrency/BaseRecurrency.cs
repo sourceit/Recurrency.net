@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections;
 
 namespace Recurrency
 {
@@ -129,18 +128,10 @@ namespace Recurrency
 
         public virtual DateTime? GetNextDate(DateTime current)
         {
-            // default (simple) implimentation
-
-            var max = _Occurrences == 0 ? _Max_Occurrences : _Occurrences;
-            DateTime? next = GetFirstDate();
-            for (int i = 1; i <= max; i++)
+            //// default (simple) implimentation
+            foreach (var date in Dates())
             {
-                if (_EndDate.HasValue && next > _EndDate) { return null; }
-                if (next > current || next == null)
-                {
-                    return next;
-                }
-                next = _GetNextFromExact(next.Value);
+                if (date > current) { return date; }
             }
             return null;
         }
@@ -190,6 +181,25 @@ namespace Recurrency
         {
             var day = new DateTime(2011, 5, 16 + weekday);
             return day.ToString("ddd");
+        }
+
+        public IEnumerable<DateTime> Dates()
+        {
+            var max = _Occurrences == 0 ? _Max_Occurrences : _Occurrences;
+            DateTime? next = GetFirstDate();
+            
+//            yield return next.Value;
+            for (int i = 1; i <= max; i++)
+            {
+                if (_EndDate.HasValue && next > _EndDate) { break; }
+
+                yield return next.Value;
+                
+                next = _GetNextFromExact(next.Value);
+
+                if (next == null) { break; }
+            }
+
         }
     }
 }

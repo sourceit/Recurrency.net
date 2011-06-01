@@ -1,0 +1,25 @@
+﻿@model Recurrency.RecurrencyInfo
+
+@{
+    ViewBag.Title = "Range";
+}
+
+<h2>Range</h2>
+
+<p>
+Pattern: @Model.GetPattern()
+</p>
+<p>
+Description: @Model.GetRecurrency().ToString()
+</p>
+
+<p>
+@Html.ActionLink("Edit", "Index", new { pattern = Model.GetPattern()})
+</p>
+
+<ul>
+    @foreach(DateTime date in Model.GetRecurrency().Dates())
+    {
+        <li>@date.ToShortDateString()</li>
+    }
+</ul>

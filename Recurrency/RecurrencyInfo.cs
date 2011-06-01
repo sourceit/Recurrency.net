@@ -14,7 +14,14 @@ namespace Recurrency
 
         public RecurrencyInfo(string pattern)
         {
-            Reset(pattern);
+            if (string.IsNullOrEmpty(pattern))
+            {
+                Reset();
+            }
+            else
+            {
+                Reset(pattern);
+            }
         }
 
         public RecurrencyInfo(BaseRecurrency recurrency)
