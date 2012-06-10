@@ -134,13 +134,17 @@ namespace Recurrency
             return GetRecurrency().GetPattern();
         }
 
+        public string GetDescription()
+        {
+            return GetRecurrency().ToString();
+        }
         private DailyRecurrency GetDailyRecurrency()
         {
             if (EndDate.HasValue)
             {
                 return new DailyRecurrency(StartDate, EndDate.Value, DailyType, DailyInterval);
             }
-            return new DailyRecurrency(StartDate, Occurrences, DailyType, DailyInterval); ;
+            return new DailyRecurrency(StartDate, Occurrences ?? 1, DailyType, DailyInterval); ;
         }
 
         private WeeklyRecurrency GetWeeklyRecurrency()
@@ -149,12 +153,13 @@ namespace Recurrency
             {
                 return new WeeklyRecurrency(StartDate, EndDate.Value, WeeklyInterval, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
             }
-            return new WeeklyRecurrency(StartDate, Occurrences, WeeklyInterval, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday); ;
+            return new WeeklyRecurrency(StartDate, Occurrences ?? 1, WeeklyInterval, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday); ;
         }
 
         private MonthlyRecurrency GetMonthlyRecurrency()
         {
-            MonthlyRecurrency monthly = EndDate.HasValue ? new MonthlyRecurrency(StartDate, EndDate.Value, MonthlyInterval, 1) : new MonthlyRecurrency(StartDate, Occurrences, MonthlyInterval, 1);
+            MonthlyRecurrency monthly = EndDate.HasValue ? new MonthlyRecurrency(StartDate, EndDate.Value, MonthlyInterval, 1) 
+                                                         : new MonthlyRecurrency(StartDate, Occurrences ?? 1, MonthlyInterval, 1);
             monthly.Type = MonthlyType;
             if (MonthlyType == Recurrency.MonthlyType.MonthDay)
             {
@@ -170,7 +175,8 @@ namespace Recurrency
 
         private YearlyRecurrency GetYearlyRecurrency()
         {
-            YearlyRecurrency yearly = EndDate.HasValue ? new YearlyRecurrency(StartDate, EndDate.Value, YearlyInterval, 1, YearlyMonth) : new YearlyRecurrency(StartDate, Occurrences, YearlyInterval, 1, YearlyMonth);
+            YearlyRecurrency yearly = EndDate.HasValue ? new YearlyRecurrency(StartDate, EndDate.Value, YearlyInterval, 1, YearlyMonth) 
+                                                       : new YearlyRecurrency(StartDate, Occurrences ?? 1, YearlyInterval, 1, YearlyMonth);
             yearly.Type = YearlyType;
             if (YearlyType == MonthlyType.MonthDay)
             {
@@ -188,7 +194,7 @@ namespace Recurrency
         
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public int Occurrences { get; set; }
+        public int? Occurrences { get; set; }
         
         #endregion
 
