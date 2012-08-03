@@ -116,11 +116,6 @@ namespace Recurrency
             throw new NotImplementedException();
         }
 
-        //protected virtual DateTime? _GetNextFromExact(DateTime knownGood, int index)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public virtual DateTime GetFirstDate()
         {
             throw new NotImplementedException();

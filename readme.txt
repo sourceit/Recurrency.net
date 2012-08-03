@@ -1,4 +1,4 @@
-Recurrency.net v0.4
+Recurrency.net v0.6
 
 WHAT IS RECURRENCY.NET
 Recurrency.net (r.n) is a recurring date library for .net.
@@ -6,8 +6,22 @@ Recurrency.net (r.n) is a recurring date library for .net.
 E.g.  You can use r.n to calcuate the 1st Wednesday in every month till Jan 1st 2020.
 
 EXAMPLE USAGE
+To calculate every weekday from DateTime(2011, 4, 1) for 5 occurrances
+	DailyRecurrency daily = new DailyRecurrency(new DateTime(2011, 4, 1), 5, DailyType.Weekdays);
+	var dateFirst = daily.GetFirstDate(); // first date
+	var dateSecond = daily.GetNextDate(dateFirst);  
+	...
+	GetNextDate() will return null once past the end date
+or
+	var info = new RecurrencyInfo { StartDate = new DateTime(2011,4,1), Occurrences = 5, DailyType = DailyType.Weekdays, Type = RecurrencyType.Daily };
 
 STORING TO DATABASE
+The recurrency pattern can be stored in a string field of length 50.
+To get a pattern, use myRecurrency.GetPattern() or myInfo.GetPattern();
+
+To create a recurrency object from a pattern use
+	var info = new RecurrencyInfo(myPattern);
+	var recurrency = info.GetRecurrency();
 
 RECURRENCY PATTERNS
 
